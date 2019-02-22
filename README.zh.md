@@ -222,7 +222,6 @@ ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
 ga_track_id: 'UA-49627206-1'            # 你用Google账号去注册一个就会给你一个这样的id
 ga_domain: huangxuan.me			# 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto。
-```
 
 #### Customization
 
@@ -253,6 +252,3 @@ JavaScript 的压缩混淆、Less 的编译、Apache 2.0 许可通告的添加�
 2. 感谢[@BrucZhaoR](https://github.com/BruceZhaoR)的中文翻译 
 
 3. 感谢 Jekyll、Github Pages 和 Bootstrap!
-
-
-
