@@ -244,7 +244,7 @@ JavaScript 的压缩混淆、Less 的编译、Apache 2.0 许可通告的添加�
 
 其实这个SEO Title就是定义了
 
-```js
+```HTML
 <head>
   <title>标题</title>
 </head>
