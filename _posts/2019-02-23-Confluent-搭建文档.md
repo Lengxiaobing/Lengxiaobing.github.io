@@ -2,7 +2,7 @@
 layout:     post
 title:      Conflutent搭建教程
 subtitle:   Conflutent
-date:       2017-02-23
+date:       2019-02-23
 author:     冷小冰
 header-img: img/post-bg-debug.png
 catalog: true
@@ -441,7 +441,7 @@ https://docs.confluent.io/current/schema-registry/docs/using.html
 4. 使用restful启动connect
 
   ```shell
-  curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/json" -d   
+curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/json" -d   
       '{ "name":"名称",  
          "config":{"属性1":"1",  
           				 "属性2":2,
@@ -453,7 +453,7 @@ https://docs.confluent.io/current/schema-registry/docs/using.html
   示例，启动MQTT：
 
   ```shell
-  curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/json" -d   
+curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/json" -d   
       '{"name": "mqtt",
         "config": {
           "tasks.max": "1",
