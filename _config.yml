@@ -1,0 +1,119 @@
+# Site settings
+title: 冷小冰的博客                                                  # 博客的标题
+SEOTitle: 冷小冰的博客 | Bing Blog                                   # 显示在浏览器上搜索的时候显示的标题
+header-img: img/post-bg-coffee.jpeg                                # 显示在首页的背景图片
+email: tn787681084@gmail.com                                       # 邮箱地址
+description: "Every failure is leading towards success."           # 网站介绍
+keyword: "BY, BY Bing, 冷小冰的博客, lengxiaobing, 冷小冰, Java"     # 关键词
+url: "https://lengxiaobing.github.io/"                             # 博客的地址
+baseurl: ""                                                        # 博客的托管地址
+github_repo: "https://github.com/Lengxiaobing/lengxiaobing.github.io.git" # git代码仓库
+
+# Publish posts or collection documents with a future date.
+future: true                                                       #发布未来日期的文档。
+
+# SNS settings
+RSS: false
+weibo_username:     冷小冰Q
+zhihu_username:     冷小冰
+github_username:    Lengxiaobing
+#twitter_username:   huxpro
+#facebook_username:  huxpro
+#linkedin_username:  firstname-lastname-idxxxx
+
+
+# Build settings
+# 从2016年开始，GitHub页面上不支持'pygments'。使用'rouge'代替突出显示
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # 如果想自定义anchor。查看post.html的181行
+# 如果在中国有时区问题（例如＃68），请取消注释以使用此选项：
+timezone: CN
+
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+# make sure you have this gem installed
+# `$ gem install jekyll-paginate`
+gems: [jekyll-paginate]
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+
+# 评论系统
+# Disqus settings（https://disqus.com/）
+#disqus_username: 冷小冰
+
+# Gitalk
+gitalk:
+  enable: true                                              #是否开启Gitalk评论
+  clientID: f2c84e7629bb1446c1a4                            #生成的clientID
+  clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
+  repo: lengxiaobing.github.io                              #仓库名称
+  owner: Lengxiaobing                                       #github用户名
+  admin: Lengxiaobing
+  distractionFreeMode: true                                 #是否启用类似FB的阴影遮罩
+
+# Netease settings
+netease_comment: false
+
+# 访问统计
+# Analytics settings
+# Baidu Analytics 
+ba_track_id: e17c2f7ae27d3d0d9000180aca5ac72c
+
+# Google Analytics
+#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+ga_domain: auto                          # 自定义的域名，默认的是 auto
+
+
+# Sidebar settings
+sidebar: true                           # 是否使用侧边栏
+sidebar-about-description: "For the next quantum leap<br>离开世界之前，一切都是过程"
+sidebar-avatar: /img/avatar-05.jpg      # 侧边栏头像图片
+
+
+# Featured Tags
+featured-tags: true                     # 是否使用首页标签
+featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
+
+
+# MathJax rendering for layout:page (e.g. post preview)
+page-mathjax: false
+
+
+# Friends
+friends: [
+{
+  title: "简书",
+  href: "http://www.jianshu.com"
+},
+{
+  title: "码云",
+  href: "https://gitee.com"
+},
+{
+  title: "GitHub",
+  href: "https://github.com"
+}
+]
