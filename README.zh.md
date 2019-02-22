@@ -5,14 +5,17 @@
 
 ### 关于收到"Page Build Warning"的email
 
-由于jekyll升级到3.0.x,对原来的pygments代码高亮不再支持，现只支持一种-rouge，所以你需要在 `_config.yml`文件中修改`highlighter: rouge`.另外还需要在`_config.yml`文件中加上`gems: [jekyll-paginate]`.
+由于jekyll升级到3.0.x,对原来的pygments代码高亮不再支持，现只支持一种-rouge，所以你需要在 `_config.yml`文件中修改`highlighter: rouge`.
+另外还需要在`_config.yml`文件中加上`gems: [jekyll-paginate]`.
 
 同时,你需要更新你的本地jekyll环境.
 
 使用`jekyll server`的同学需要这样：
 
-1. `gem update jekyll` # 更新jekyll
-2. `gem update github-pages` #更新依赖的包
+```bash
+gem update jekyll # 更新jekyll
+gem update github-pages #更新依赖的包
+```
 
 使用`bundle exec jekyll server`的同学在更新jekyll后，需要输入`bundle update`来更新依赖的包.
 
@@ -245,7 +248,6 @@ JavaScript 的压缩混淆、Less 的编译、Apache 2.0 许可通告的添加�
 
 ## 致谢
 
-1. 这个模板是从这里[IronSummitMedia/startbootstrap-clean-blog-jekyll](https://github.com/IronSummitMedia/startbootstrap-clean-blog-jekyll)  fork 的。 感谢这个作者
+1. 这个模板是从这里[IronSummitMedia/startbootstrap-clean-blog-jekyll](https://github.com/IronSummitMedia/startbootstrap-clean-blog-jekyll) fork 的，感谢这个作者。
 2. 感谢[@BrucZhaoR](https://github.com/BruceZhaoR)的中文翻译 
-
 3. 感谢 Jekyll、Github Pages 和 Bootstrap!
