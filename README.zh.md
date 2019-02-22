@@ -23,7 +23,7 @@
 
 我的博客仓库——`huxpro.github.io`，是经常修改的，而且还会有人乱提交代码，因此给大家做了一个稳定版的模板。大家可以直接fork模板——`huxblog-boilerplate`,要改的地方我都说明了。或者可以直接下载zip到本地自己去修改。
 
-```
+```bash
 $ git clone git@github.com:Huxpro/huxblog-boilerplate.git
 ```
 
@@ -77,7 +77,7 @@ $ git clone git@github.com:Huxpro/huxblog-boilerplate.git
 
 你可以通用修改 `_config.yml`文件来轻松的开始搭建自己的博客:
 
-```
+```yaml
 # Site settings
 title: Hux Blog             # 你的博客网站标题
 SEOTitle: Hux Blog			# 在后面会详细谈到
@@ -99,8 +99,7 @@ Jekyll官方网站还有很多的参数可以调，比如设置文章的链接�
 
 yaml 头文件长这样:
 
-```
----
+```yaml
 layout:     post
 title:      "Hello 2015"
 subtitle:   "Hello World, Hello Blog"
@@ -109,8 +108,6 @@ author:     "Hux"
 header-img: "img/post-bg-2015.jpg"
 tags:
     - Life
----
-
 ```
 
 #### SideBar
@@ -119,7 +116,8 @@ tags:
 ![](http://huangxuan.me/img/blog-sidebar.jpg)
 
 设置是在 `_config.yml`文件里面的`Sidebar settings`那块。
-```
+
+```yaml
 # Sidebar settings
 sidebar: true  #添加侧边栏
 sidebar-about-description: "简单的描述一下你自己"
@@ -138,7 +136,7 @@ Mini-About-Me 这个模块将在你的头像下面，展示你所有的社交账
 看到这个网站 [Medium](http://medium.com) 的推荐标签非常的炫酷，所以我将他加了进来。
 这个模块现在是独立的，可以呈现在所有页面，包括主页和发表的每一篇文章标题的头上。
 
-```
+```yaml
 # Featured Tags
 featured-tags: true  
 featured-condition-size: 1     # A tag will be featured if the size of it is more than this condition value
@@ -155,7 +153,7 @@ featured-condition-size: 1     # A tag will be featured if the size of it is mor
 
 设置是在 `_config.yml`文件里面的`Friends`那块，自己加吧。
 
-```
+```yaml
 # Friends
 friends: [
     {
@@ -180,11 +178,9 @@ HTML5幻灯片的排版：
 
 其主要原理是添加一个 `iframe`，在里面加入外部链接。你可以直接写到头文件里面去，详情请见下面的yaml头文件的写法。
 
-```
----
+```yaml
 layout:     keynote
 iframe:     "http://huangxuan.me/js-module-7day/"
----
 ```
 
 iframe在不同的设备中，将会自动的调整大小。保留内边距是为了让手机用户可以向下滑动，以及添加更多的内容。
@@ -203,7 +199,7 @@ iframe在不同的设备中，将会自动的调整大小。保留内边距是�
 
 **其次**，你只需要在下面的yaml头文件中设置一下就可以了。
 
-```
+```yaml
 duoshuo_username: _你的用户名_
 # 或者
 disqus_username: _你的用户名_
@@ -215,13 +211,14 @@ disqus_username: _你的用户名_
 
 网站分析，现在支持百度统计和Google Analytics。需要去官方网站注册一下，然后将返回的code贴在下面：
 
-```
+```yaml
 # Baidu Analytics
 ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 
 # Google Analytics
 ga_track_id: 'UA-49627206-1'            # 你用Google账号去注册一个就会给你一个这样的id
 ga_domain: huangxuan.me			# 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto。
+```
 
 #### Customization
 
