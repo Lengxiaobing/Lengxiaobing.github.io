@@ -17,9 +17,9 @@ RSS: false
 weibo_username:     冷小冰Q
 zhihu_username:     冷小冰
 github_username:    Lengxiaobing
-#twitter_username:   huxpro
-#facebook_username:  huxpro
-#linkedin_username:  firstname-lastname-idxxxx
+#twitter_username:
+#facebook_username:
+#linkedin_username:
 
 
 # Build settings
@@ -30,14 +30,14 @@ paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 anchorjs: true                          # 如果想自定义anchor。查看post.html的181行
 # 如果在中国有时区问题（例如＃68），请取消注释以使用此选项：
-timezone: CN
+#timezone: CN
 
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
 # make sure you have this gem installed
 # `$ gem install jekyll-paginate`
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 
 # Markdown settings
@@ -62,8 +62,8 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true                                              #是否开启Gitalk评论
-  clientID: f2c84e7629bb1446c1a4                            #生成的clientID
-  clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
+  clientID: 3cee51d0a832088f7db7                            #生成的clientID
+  clientSecret: 1e82ac7a879bd6c75dc9b2b5b93f17b3a37faf0d    #生成的clientSecret
   repo: lengxiaobing.github.io                              #仓库名称
   owner: Lengxiaobing                                       #github用户名
   admin: Lengxiaobing
@@ -84,7 +84,7 @@ ga_domain: auto                          # 自定义的域名，默认的是 aut
 
 # Sidebar settings
 sidebar: true                           # 是否使用侧边栏
-sidebar-about-description: "For the next quantum leap<br>离开世界之前，一切都是过程"
+sidebar-about-description: "You make my heart smile<br>衣带渐宽终不悔，为伊消得人憔悴"
 sidebar-avatar: /img/avatar-05.jpg      # 侧边栏头像图片
 
 
