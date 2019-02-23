@@ -14,9 +14,10 @@ future: true                                                       #发布未来
 
 # SNS settings
 RSS: false
-weibo_username:     冷小冰Q
-zhihu_username:     冷小冰
+weibo_username:     5629222395
+zhihu_username:     leng-xiao-bing-63
 github_username:    Lengxiaobing
+jianshu_username:   f5acf99d021c
 #twitter_username:
 #facebook_username:
 #linkedin_username:
@@ -37,7 +38,7 @@ anchorjs: true                          # 如果想自定义anchor。查看post.
 # from PR#40, to support local preview for Jekyll 3.0
 # make sure you have this gem installed
 # `$ gem install jekyll-paginate`
-plugins: [jekyll-paginate]
+gems: [jekyll-paginate]
 
 
 # Markdown settings

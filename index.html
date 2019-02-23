@@ -3,6 +3,7 @@ layout: page
 description: "遇顺境 处之淡然 遇逆境 处之泰然"
 ---
 
+<!-- 遍历分页后的文章 -->
 {% for post in paginator.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
@@ -30,7 +31,7 @@ description: "遇顺境 处之淡然 遇逆境 处之泰然"
 <hr>
 {% endfor %}
 
-<!-- Pager -->
+<!-- 分页链接 -->
 {% if paginator.total_pages > 1 %}
 <ul class="pager">
     {% if paginator.previous_page %}

@@ -1,6 +1,6 @@
 /*!
- * Hux Blog v1.7.0 (http://huxpro.github.io)
- * Copyright 2018 Hux <huxpro@gmail.com>
+ * Blog v1.7.0
+ * Copyright 2018
  */
 
 @media (min-width: 1200px) {
@@ -21,12 +21,12 @@
 }
 
 .sidebar-container h5 {
-    color: #ccc;
+    color: gray;
     padding-bottom: 1em
 }
 
 .sidebar-container h5 a {
-    color: #ccc !important;
+    color: gray !important;
     text-decoration: none
 }
 
@@ -1245,7 +1245,7 @@ code, kbd, pre, samp {
 
 .post-preview > .post-meta {
     font-family: Lora, 'Times New Roman', serif;
-    color: #ccc;
+    color: gray;
     font-size: 16px;
     font-style: italic;
     margin-top: 0
