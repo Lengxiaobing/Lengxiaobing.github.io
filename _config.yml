@@ -24,8 +24,6 @@ jianshu_username:   f5acf99d021c
 
 
 # Build settings
-# 从2016年开始，GitHub页面上不支持'pygments'。使用'rouge'代替突出显示
-highlighter: rouge
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
@@ -46,6 +44,8 @@ plugins: [jekyll-paginate]
 # although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
 # document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
+# 从2016年开始，GitHub页面上不支持'pygments'，使用'rouge'代替突出显示。
+highlighter: rouge
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
   syntax_highlighter_opts:
@@ -79,7 +79,7 @@ netease_comment: false
 ba_track_id: e17c2f7ae27d3d0d9000180aca5ac72c
 
 # Google Analytics
-#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+ga_track_id: 'UA-135067536-1'            # Format: UA-xxxxxx-xx
 ga_domain: auto                          # 自定义的域名，默认的是 auto
 
 
