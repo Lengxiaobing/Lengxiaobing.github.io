@@ -31,14 +31,14 @@ paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 anchorjs: true                          # 如果想自定义anchor。查看post.html的181行
 # 如果在中国有时区问题（例如＃68），请取消注释以使用此选项：
-#timezone: CN
+timezone: Asia/Shanghai
 
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
 # make sure you have this gem installed
 # `$ gem install jekyll-paginate`
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 
 # Markdown settings
