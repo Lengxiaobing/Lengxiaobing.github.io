@@ -477,7 +477,7 @@ http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz
   ```shell
 confluent-hub install confluentinc/kafka-connect-mqtt:1.1.0-preview
   ```
-![1545896923943](C:\Users\ZX\AppData\Roaming\Typora\typora-user-images\1545896923943.png)
+![](img/docs-pics/confluent01.png)
 2. 导航到MQTT配置文件目录`/usr/share/confluent-hub-components/confluentinc-kafka-connect-mqtt/etc/source-anonymous.properties`，修改如下内容:
   ```shell
 #
