@@ -12,4 +12,4 @@ My [👉GitHub](https://github.com/Lengxiaobing/lengxiaobing.github.io.git) Page
 - [GitHub](https://github.com/Lengxiaobing)
 - [jekyll](http://jekyll.com.cn/)
 - [Google Analytics](https://analytics.google.com/analytics)
-- [Baidu Analytics](https://tongji.baidu.com/web/welcome/login?castk=LTE%3D)
+- [Baidu Analytics](https://tongji.baidu.com/web/27361073/overview/index?siteId=13092295)
