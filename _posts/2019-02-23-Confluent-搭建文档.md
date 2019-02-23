@@ -12,29 +12,25 @@ tags:
 ---
 # confluent搭建文档
 
-**环境描述:** 
-centos7_2_64 
-confluent-community-5.1.0-2.11 
-kafka_2.11-1.1.0 
-zookeeper-3.5.4-beta 
-jdk1.8.0_172 
+**环境描述:**  
+centos7_2_64  
+confluent-community-5.1.0-2.11  
+kafka_2.11-1.1.0  
+zookeeper-3.5.4-beta  
+jdk1.8.0_172  
 
 ## 一、安装
 
 1. 安装 `curl` 和 `which` 
-
 	```shell
 	sudo yum install curl which
 	```
 
 2. 安装Confluent Platform公钥。此密钥用于在YUM存储库中对包进行签名。
-
 	```shell
 	sudo rpm --import https://packages.confluent.io/rpm/5.1/archive.key
 	```
-
 3. 导航到`/etc/yum.repos.d/`并创建一个以`confluent.repo`命名的文件，添加如下内容。
-
 	```shell
 	[Confluent.dist]
 	name=Confluent repository (dist)
@@ -53,19 +49,15 @@ jdk1.8.0_172
 
 4. 清除yum缓存，并安装Confluent Platform（二选一）。
 - 安装Confluent Platform商业版：
-
   ```shell
   sudo yum clean all && sudo yum install confluent-platform-2.11
   ```
 
 - 安装Confluent  Platform社区版：
-
   ```shell
   sudo yum clean all && sudo yum install confluent-community-2.11
   ```
-
   Confluent Platform商业版将安装如下依赖，社区版只安装其中的一部分:
-
   ```shell
   Dependency Installed:
     confluent-camus.noarch 0:5.1.0-1
@@ -92,8 +84,8 @@ jdk1.8.0_172
   ```
 
 ## 二、配置kafka
-​	配置Confluent Platform各个组件的属性。默认情况下，它们位于`/etc/`目录下。
-​	Confluent安装包本身自带了kafka和zookeeper环境。可以使用Confluent自带的kafka和zookeeper环境，也可以使用单独安装的kafka和zookeeper环境，两者的配置方式相同。
+Confluent Platform各个组件的配置，默认情况下，它们位于`/etc/`目录下。  
+Confluent安装包本身自带了kafka和zookeeper环境。可以使用Confluent自带的kafka和zookeeper环境，也可以使用单独安装的kafka和zookeeper环境，两者的配置方式相同。
 
 ### ZooKeeper
 本文档是在集群模式下运行ZooKeeper，集群模式至少需要三台服务器，并且必须具有奇数个服务器才能进行故障转移。
@@ -123,12 +115,11 @@ autopurge.purgeInterval=24
   ```shell
 server.<myid>=<hostname>:<leaderport>:<electionport>
   ```
-
 树型说明：
-`myid`是服务器标识号。有三台服务器，每个有不同的`myid` 分别使用值`1`，`2`和`3`。
-`hostname`是服务器名称，也可以使用ip代替，推荐使用服务器名称。
-`leaderport`是领导者端口，也是通信端口。
-`electionport`是选举端口，在领导者出现故障时，进行选举时使用。
+`myid`是服务器标识号。有三台服务器，每个有不同的`myid` 分别使用值`1`，`2`和`3`。  
+`hostname`是服务器名称，也可以使用ip代替，推荐使用服务器名称。  
+`leaderport`是领导者端口，也是通信端口。  
+`electionport`是选举端口，在领导者出现故障时，进行选举时使用。  
 
 2. 导航到Zookeeper快照目录。创建myid文件，当ZooKeeper服务器启动时，它通过引用该`myid`文件来知道它是哪个服务器。例如，服务器`1`配置如下：
   ```properties
@@ -136,18 +127,13 @@ server.<myid>=<hostname>:<leaderport>:<electionport>
   ```
 
 ### Kafka
-
 导航到Kafka属性文件（`/etc/kafka/server.properties`）并自定义以下内容：
 - 通过设置`zookeeper.connect`属性来连接zookeeper集群。
-
 	```shell
 	zookeeper.connect=zoo1:2181,zoo2:2181,zoo3:2181
 	```
-
 - 使用以下方法之一为集群中的每个节点配置代理ID。
-
 	- 动态生成代理ID：添加`broker.id.generation.enable=true`并注释掉`broker.id`。例如：
-
 		```properties
 		############################# Server Basics #############################＃
 		
@@ -155,32 +141,23 @@ server.<myid>=<hostname>:<leaderport>:<electionport>
 		#broker.id=0
 		broker.id.generation.enable=true
 		```
-
 	- 手动设置代理ID：为`broker.id`每个节点设置唯一值。
-
 		```properties
 		############################# Server Basics #############################＃
 		
 		# broker的ID。必须将此设置为每个代理的唯一整数。
 		broker.id=0
 		```
-
 - 配置其他代理和客户机如何使用`listeners`与代理通信，以及可选的`advertised.listeners`。
-
 	- `listeners`：URI和侦听器名称的逗号分隔列表。
-
 		```shell
 		listeners = PLAINTEXT://hostname:9092
 		```
-
 	- `advertised.listeners`：URI和侦听器名称的逗号分隔列表，供其他代理和客户机使用。该参数确保broker advertises 可从本地和外部主机访问的地址。
-
 		```shell
 		advertised.listeners=PLAINTEXT://hostname:9092
 		```
-
 ## 三、配置Confluent 
-
 ### Confluent Control Center
 ​	Confluent  Control Center是商业版闭源的组件，是管理和监控Kafka最全面的GUI驱动系统。
 ​	如果使用商业版，会自动下载Confluent  Control Center所需要的各种依赖；如果使用社区版，需要单独下载配置。
@@ -188,7 +165,6 @@ server.<myid>=<hostname>:<leaderport>:<electionport>
 
 **商业版配置：**
 1. 导航到Control Center属性文件(`/etc/confluent-control-center/control-center.properties`) 并配置如下内容:
-
 	```properties
 	# Kafka集群的主机/端口
 	bootstrap.servers=hostname1:port1,hostname2:port2,hostname3:port3
@@ -201,7 +177,6 @@ server.<myid>=<hostname>:<leaderport>:<electionport>
 	```
 
 2. 导航到Kafka服务器配置文件（`/etc/kafka/server.properties`）并启用Confluent Metrics Reporter。
-
 	```properties
 	##################### Confluent Metrics Reporter #######################
 	# Confluent Control Center and Confluent Auto Data Balancer integration
@@ -216,9 +191,7 @@ server.<myid>=<hostname>:<leaderport>:<electionport>
 	# Uncomment the following line if the metrics cluster has a single broker
 	confluent.metrics.reporter.topic.replicas=1
 	```
-
 3. 将如下信息添加到Kafka Connect属性文件（`/etc/kafka/connect-distributed.properties`）以添加对拦截器的支持。`connect-distributed.properties`为分布式的配置文件，也可以使用单机版的配置文件。
-
 	```properties
 	# Interceptor setup
 	consumer.interceptor.classes=io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor
@@ -260,8 +233,7 @@ $ sudo yum install confluent-control-center
   ```
 
 3. 修改配置文件
-
-  1. 导航到Control Center属性文件(`/etc/confluent-control-center/control-center.properties`) 并配置如下内容:
+   导航到Control Center属性文件(`/etc/confluent-control-center/control-center.properties`) 并配置如下内容:
 ```properties
 # Kafka集群的主机/端口
 bootstrap.servers=hostname1:port1,hostname2:port2,hostname3:port3
@@ -272,19 +244,17 @@ confluent.license=<your-confluent-license>
 # ZooKeeper集群的主机/端口
 zookeeper.connect=hostname1:port1,hostname2:port2,hostname3:port3
 ```
-  2. 将如下信息添加到Kafka Connect属性文件（`/kafka/connect-distributed.properties`）以添加对拦截器的支持。
+   将如下信息添加到Kafka Connect属性文件（`/kafka/connect-distributed.properties`）以添加对拦截器的支持。
 ```properties
 # Interceptor setup
 consumer.interceptor.classes=io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor
 producer.interceptor.classes=io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor
 ```
-
 4. 启动方式，守护线程的方式启动
   ```shell
 control-center-start -daemon /etc/confluent-control-center/control-center.properties 
   ```
-
-### Schema Registry
+  ### Schema Registry
 ​	提供Kafka数据格式的中央注册表，以保证兼容性。
 ​	Schema Registr存储所有模式的版本化历史，并允许根据配置的兼容性设置来演进模式。它还为客户端提供一个插件，用于处理以Avro格式发送的消息的模式存储和检索。
 ​	导航到Schema Registry属性文件(`/etc/schema-registry/schema-registry.properties`) 并配置如下内容:
@@ -365,7 +335,6 @@ https://docs.confluent.io/current/schema-registry/docs/using.html
   # 插件及其依赖项的jar的目录
   plugin.path=/usr/share/java,/usr/share/confluent-hub-components
   ```
-
 2. 创建分布式模式所必须的几个topic
   ```shell
   # config.storage.topic=connect-configs
@@ -377,16 +346,13 @@ https://docs.confluent.io/current/schema-registry/docs/using.html
   # status.storage.topic=connect-status
   $ $ bin/kafka-topics --create --zookeeper localhost:2181 --topic connect-status --replication-factor 3 --partitions 10 --config cleanup.policy=compact
   ```
-
-  - config.storage.topic：topic用于存储connector和任务配置；注意，这应该是一个单个的partition，多副本的topic
+  - config.storage.topic：topic用于存储connector和任务配置；注意，这应该是一个单个的partition，多副本的topic 
   - offset.storage.topic：用于存储offsets；这个topic应该配置多个partition和副本。
   - status.storage.topic：用于存储状态；这个topic 可以有多个partitions和副本
-
 3.  启动worker
 	```shell
 	connect-distributed.sh -daemon ../config/connect-distributed.properties
 	```
-
 4. 使用restful启动connect
   ```shell
 curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/json" -d   
@@ -397,9 +363,7 @@ curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/
           				 }
       }'
   ```
-
   示例，启动MQTT：
-
   ```shell
 curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/json" -d   
       '{"name": "mqtt",
@@ -423,9 +387,7 @@ curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/
   ```
 
 6. 配置日志
-
-  默认情况下日志只在控制台输出，如需要保存文件需要修改配置connect-log4j.properties，例如下：
-
+    默认情况下日志只在控制台输出，如需要保存文件需要修改配置connect-log4j.properties，例如下：
   ```properties
   log4j.rootLogger=INFO, stdout, stdfile
   
@@ -447,17 +409,14 @@ curl 'http://localhost:8083/connectors' -X POST -i -H "Content-Type:application/
 ### Start Confluent Platform
 ​	使用systemd服务启动Confluent平台及其组件。您可以使用`systemctl start`命令立即启动，也可以使用systemctl enable命令自动启动。
 ​	ZooKeeper、Kafka和Schema Registry必须按照这个特定顺序启动，并且必须在其他组件之前启动。可以使用`start-cp.sh`脚本按顺序启动`Confluent`平台所有组件，使用`stop-cp.sh`脚本停止所有组件。
-
 1. 启动ZooKeeper.
   ```shell
 sudo systemctl start confluent-zookeeper
   ```
 2. 启动Kafka.
-
   ```shell
 sudo systemctl start confluent-kafka
   ```
-
 3. 启动Schema Registry.
   ```shell
 sudo systemctl start confluent-schema-registry
@@ -467,51 +426,37 @@ sudo systemctl start confluent-schema-registry
 	```shell
 	sudo systemctl start confluent-control-center
 	```
-
   - Kafka Connect
 	```shell
 	sudo systemctl start confluent-kafka-connect
 	```
-
   - Kafka REST Proxy
 	```shell
 	sudo systemctl start confluent-kafka-rest
 	```
-
   - KSQL
 	```shell
 	sudo systemctl start confluent-ksql
 	```
-
 5. 可以使用以下命令检查服务状态:
 	```shell
 	systemctl status confluent*
 	```
-
 ### Uninstall
-​	运行此命令卸载Confluent平台，其中`<component-name>`是`confluent-platform` 或`confluent-community`的名称，需要将安装时下载的依赖全部卸载，才可以重新安装。
-
+运行此命令卸载Confluent平台，其中`<component-name>`是`confluent-platform` 或`confluent-community`的名称，需要将安装时下载的依赖全部卸载，才可以重新安装。
 ```shell
 sudo yum remove <component-name>
 ```
-
 例如：
 ```shell
 sudo yum remove confluent-community-2.11
 ```
-
 ## 四、插件管理
-
 ### Confluent Hub
-
 Confluent Hub客户端是一个命令行工具，可以轻松地将[Confluent Hub](https://confluent.io/hub)中的组件安装和更新到本地Confluent Platform中。
-
 1. 下载并解压
-
-	http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz
-
+http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz
 2. 添加环境变量
-
 	```shell
 	# vim /etc/profile
 	export CONFLUENT_HOME=/usr/confluent_hub
@@ -519,34 +464,25 @@ Confluent Hub客户端是一个命令行工具，可以轻松地将[Confluent Hu
 	# source /etc/profile
 	# which confluent-hub
 	```
-
 3. 安装命令
-
 	```shell
 	confluent-hub install <owner>/<component>:<version>
 	```
-
 	- `<owner>` 是Confluent Hub上组件所有者的名称。
 	- `<component>` 是Confluent Hub上组件的名称。
 	- `<version>`是Confluent Hub上的组件版本。
 
 ### MQTT安装示例
-
 1. 执行下载命令
-
   ```shell
 confluent-hub install confluentinc/kafka-connect-mqtt:1.1.0-preview
   ```
-
 ![1545896923943](C:\Users\ZX\AppData\Roaming\Typora\typora-user-images\1545896923943.png)
-
 2. 导航到MQTT配置文件目录`/usr/share/confluent-hub-components/confluentinc-kafka-connect-mqtt/etc/source-anonymous.properties`，修改如下内容:
-
   ```shell
 #
 # Copyright [2018 - 2018] Confluent Inc.
 #
-
 name=anonymous
 tasks.max=1
 # 连接使用的java类
@@ -560,45 +496,26 @@ kafka.topic=mqtt
 # 连接的kafka
 confluent.topic.bootstrap.servers=192.168.3.163:9092
   ```
-
   详细配置信息，参见官网：
-
   https://docs.confluent.io/current/connect/kafka-connect-mqtt/mqtt-source-connector/mqtt_source_connector_config.html
 
 3. 配置worker
-
-  ​	无论是运行独立模式还是分布式模式，都可以通过将包含必需选项的属性文件作为第一个参数传递给worker进程来配置Kafka Connect工作程序。Confluent Platform附带了一些示例配置文件。建议使用这些文件`etc/schema-registry/connect-avro-[standalone|distributed].properties`作为第一个参数，因为它们包含使用Confluent Platform的Avro转换器与Schema Registry集成的必要配置。
-
-  ​	在分布式模式下，如果每个主机运行多个worker线程，则以下设置必须为每个实例具有不同的值：
-
+    ​无论是运行独立模式还是分布式模式，都可以通过将包含必需选项的属性文件作为第一个参数传递给worker进程来配置Kafka Connect工作程序。Confluent Platform附带了一些示例配置文件。建议使用这些文件`etc/schema-registry/connect-avro-[standalone|distributed].properties`作为第一个参数，因为它们包含使用Confluent Platform的Avro转换器与Schema Registry集成的必要配置。
+    ​在分布式模式下，如果每个主机运行多个worker线程，则以下设置必须为每个实例具有不同的值：
   - `rest.port` - REST接口侦听HTTP请求的端口
 
 4. 启动命令
-
-  **独立模式**
-
+    **独立模式**
   ```shell
 connect-standalone worker.properties connector1.properties [ connector2.properties connector3.properties ... ]
   ```
-
   **分布式模式**
-
   ```shell
 connect-distributed worker.properties connector1.properties [ connector2.properties connector3.properties ... ]
   ```
-
   示例：
-
   ```shell
 connect-distributed -daemon /etc/schema-registry/connect-avro-distributed.properties /usr/share/confluent-hub-components/confluentinc-kafka-connect-mqtt/etc/source-anonymous.properties
   ```
-
   详细配置信息，参见官网：
-
   https://docs.confluent.io/current/connect/userguide.html
-
-
-
-
-
-
