@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Archive
-description: 众里寻他千百度 蓦然回首 那人却在 灯火阑珊处
-header-img: "img/archive-bg.jpg"
+title: Tags
+description: "昨夜西风凋碧树 独上高楼 望尽天涯路"
+header-img: "img/tag-bg.jpg"
 ---
 
-<!--
+<!-- 
 Credits: this page shamelessly borrowed a lot from:
 https://github.com/kitian616/jekyll-TeXt-theme
 -->
@@ -16,8 +16,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-            <!-- Archive (as filter) -->
+            <!-- Tags (as filter) -->
             <div id='tag_cloud' class="tags tags-sup js-tags">
                 <a class="tag-button--all" data-encode="">
                     Show All
@@ -38,7 +37,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
                 {{ tags | split:'<a>' | sort | join:'</a>' }}
             </div>
 
-            <!-- 归档列表 -->
+            <!-- Article List -->
             <div class="mini-post-list js-result d-none">
                 <section>
                     {%- assign _sorted_list = site.posts -%}
@@ -54,31 +53,32 @@ https://github.com/kitian616/jekyll-TeXt-theme
                     {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
                     {%- endif -%}
                     {%- endfor -%}
-                    {%- assign _currentday = _article.date | date: '%m-%d' -%}
+
                     {% comment %} group by year {% endcomment %}
                     {%- assign _currentdate = _article.date | date: '%Y' -%}
                     {%- if _currentdate != _date -%}
-                    <!--{%- unless forloop.first -%}-->
+                    {%- unless forloop.first -%}
                 </section>
-                <!--{%- endunless -%}-->
-                <span class="fa fa-calendar-times-o listing-seperator">
-                      <span class="tag-text">{{ _currentdate }}</span>
-                </span>
+                {%- endunless -%}
+
+                <span class="fa fa-tag listing-seperator">
+					<span class="tag-text">{{ _currentdate }}</span>
+				</span>
                 {%- assign _date = _currentdate -%}
                 {%- endif -%}
+
                 <div class="post-preview item" data-tags="{{ _tags }}">
-                    <ul>
-                        <li>
-                            {{ _currentday }}
-                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                            <a href="{{ _article.url | prepend: site.baseurl }}"
-                               style="color: #0085a1">
-                            <span>
-                                 {{ _article.title }}
-                            </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a href="{{ _article.url | prepend: site.baseurl }}">
+                        <h2 class="post-title">
+                            {{ _article.title }}
+                        </h2>
+                        {% if _article.subtitle %}
+                        <h3 class="post-subtitle">
+                            {{ _article.subtitle }}
+                        </h3>
+                        {% endif %}
+                    </a>
+                    <hr>
                 </div>
                 {% endfor %}
             </div>

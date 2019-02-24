@@ -15,8 +15,7 @@
     <meta property="og:type" content="article">
     <meta property="og:description" content="{{ page.excerpt | strip_html | truncate:200 }}">
     {% if page.date %}
-    <meta property="article:published_time" content="{{ page.date | date: " %Y-%m-%dT%H:%M:%SZ
-    " }}">
+    <meta property="article:published_time" content="{{ page.date | date: '%Y-%m-%dT%H:%M:%SZ' }}">
     {% endif %}
     {% if page.author %}
     <meta property="article:author" content="{{ page.author }}">
