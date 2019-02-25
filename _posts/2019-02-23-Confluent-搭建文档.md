@@ -13,11 +13,11 @@ tags:
 # confluent搭建文档
 
 **环境描述:**  
-centos7_2_64  
-confluent-community-5.1.0-2.11  
-kafka_2.11-1.1.0  
-zookeeper-3.5.4-beta  
-jdk1.8.0_172  
+**Linux：**Centos7_2_64  
+**Confluent：**confluent-community-5.1.0-2.11  
+**Kafka：**kafka_2.11-1.1.0  
+**Zookeeper：**Zookeeper-3.5.4-beta  
+**JDK：**jdk1.8.0_172  
 
 ## 一、安装confluent
 
