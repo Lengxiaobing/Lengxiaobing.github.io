@@ -9,7 +9,7 @@ catalog: true
 tags:
     - Conflutent
     - ETL
-    - ZooKeeper
+    - Zookeeper
 ---
 # confluent搭建文档
 
