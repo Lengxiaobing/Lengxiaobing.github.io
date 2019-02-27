@@ -9,6 +9,7 @@ catalog: true
 tags:
     - Conflutent
     - ETL
+    - ZooKeeper
 ---
 # confluent搭建文档
 
@@ -222,7 +223,7 @@ Confluent安装包本身自带了kafka和zookeeper环境。可以使用Confluent
 
 1. 安装Confluent  Control Center  
     详细步骤可参考官网：  
-    https://docs.confluent.io/3.0.0/control-center/docs/install.html
+    <https://docs.confluent.io/3.0.0/control-center/docs/install.html>
 
     ```shell
     $ sudo yum install confluent-control-center
@@ -231,7 +232,7 @@ Confluent安装包本身自带了kafka和zookeeper环境。可以使用Confluent
 2. 安装Confluent Metrics Clients
 
     - 需要下载依赖包，放入到kakfa的libs目录下。
-    - 详细参见官网：https://docs.confluent.io/current/control-center/installation/clients.html
+    - 详细参见官网：<https://docs.confluent.io/current/control-center/installation/clients.html>
 
     ```xml
     <repositories>
@@ -308,9 +309,9 @@ debug=false
 ```
 
 ​	详细的配置信息，参见官网：  
-https://docs.confluent.io/current/schema-registry/docs/config.html
+<https://docs.confluent.io/current/schema-registry/docs/config.html>
 ​	常见的Schema Registry使用语法，参见官网：  
-https://docs.confluent.io/current/schema-registry/docs/using.html
+<https://docs.confluent.io/current/schema-registry/docs/using.html>
 
 ### Kafka connect
 ​	Kafka Connect是一种用于在Kafka和其他系统之间可扩展的、可靠的流式传输数据的工具。它使得能够快速定义将大量数据集合移入和移出Kafka的连接器变得简单。  
@@ -525,7 +526,7 @@ Confluent Hub客户端是一个命令行工具，可以轻松地将[Confluent Hu
 
 1. 下载并解压
 
-   - 下载网址：http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz
+   - 下载网址：<http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz>
 
 2. 添加环境变量
 
@@ -572,7 +573,7 @@ kafka.topic=mqtt
 confluent.topic.bootstrap.servers=192.168.3.163:9092
   ```
   详细配置信息，参见官网：
-  https://docs.confluent.io/current/connect/kafka-connect-mqtt/mqtt-source-connector/mqtt_source_connector_config.html
+ <https://docs.confluent.io/current/connect/kafka-connect-mqtt/mqtt-source-connector/mqtt_source_connector_config.html>
 
 3. 配置worker
     ​无论是运行独立模式还是分布式模式，都可以通过将包含必需选项的属性文件作为第一个参数传递给worker进程来配置Kafka Connect工作程序。Confluent Platform附带了一些示例配置文件。建议使用这些文件`etc/schema-registry/connect-avro-[standalone|distributed].properties`作为第一个参数，因为它们包含使用Confluent Platform的Avro转换器与Schema Registry集成的必要配置。
@@ -593,4 +594,4 @@ connect-distributed worker.properties connector1.properties [ connector2.propert
 connect-distributed -daemon /etc/schema-registry/connect-avro-distributed.properties /usr/share/confluent-hub-components/confluentinc-kafka-connect-mqtt/etc/source-anonymous.properties
   ```
   详细配置信息，参见官网：
-  https://docs.confluent.io/current/connect/userguide.html
+  <https://docs.confluent.io/current/connect/userguide.html>
