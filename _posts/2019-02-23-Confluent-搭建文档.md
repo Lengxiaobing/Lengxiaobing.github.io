@@ -310,6 +310,7 @@ debug=false
 
 ​	详细的配置信息，参见官网：  
 <https://docs.confluent.io/current/schema-registry/docs/config.html>
+
 ​	常见的Schema Registry使用语法，参见官网：  
 <https://docs.confluent.io/current/schema-registry/docs/using.html>
 
