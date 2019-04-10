@@ -286,9 +286,9 @@ Confluent安装包本身自带了kafka和zookeeper环境。可以使用Confluent
     control-center-start -daemon /etc/confluent-control-center/control-center.properties
     ```
 
-  ### Schema Registry  
-​	提供Kafka数据格式的中央注册表，以保证兼容性。  
-​	Schema Registr存储所有模式的版本化历史，并允许根据配置的兼容性设置来演进模式。它还为客户端提供一个插件，用于处理以Avro格式发送的消息的模式存储和检索。
+### Schema Registry
+​ 提供Kafka数据格式的中央注册表，以保证兼容性。  
+​ Schema Registr存储所有模式的版本化历史，并允许根据配置的兼容性设置来演进模式。它还为客户端提供一个插件，用于处理以Avro格式发送的消息的模式存储和检索。
 
 - 导航到Schema Registry配置文件(`/etc/schema-registry/schema-registry.properties`) ，配置如下:
 
