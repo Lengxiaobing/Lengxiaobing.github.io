@@ -164,7 +164,7 @@ docker rm gitlab
 
 **重新创建容器**
 
-将原来的**--publish 81:80**改为**--publish 81:81**
+将原来的**publish 81:80**改为**publish 81:81**
 
 ```shell
 docker run --detach --hostname 192.168.3.34 --publish 444:443 --publish 81:81 --publish 23:22 --name gitlab --restart always --volume /opt/gitlab/config:/etc/gitlab --volume /opt/gitlab/logs:/var/log/gitlab --volume /opt/gitlab/data:/var/opt/gitlab c752bc978a4b
