@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:         使用docker搭建GitLab环境
+title:      使用docker搭建GitLab环境
 subtitle:   使用docker搭建GitLab环境
 date:       2019-04-22
 author:     冷小冰
