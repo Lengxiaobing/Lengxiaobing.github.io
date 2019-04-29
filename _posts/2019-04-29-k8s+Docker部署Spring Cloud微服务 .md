@@ -614,7 +614,8 @@ eureka:
     prefer-ip-address: false
     lease-expiration-duration-in-seconds: 90
   server:
-    enable-self-preservation: true
+    # 设为false，关闭自我保护
+    enable-self-preservation: false
     eviction-interval-timer-in-ms: 5000
   client:
     register-with-eureka: true
