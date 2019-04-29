@@ -7,7 +7,7 @@ author:     冷小冰
 header-img: img/post-bg-debug.png
 catalog: true
 tags:
-    - kubernetes
+    - Kubernetes
     - Docker
     - Spring Cloud
 ---
