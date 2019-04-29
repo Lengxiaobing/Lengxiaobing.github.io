@@ -549,7 +549,7 @@ networks:
       name: cloud-network
 # 服务
 services:
-	# 服务名，自定义
+  # 服务名，自定义
   message-service:
     # 服务镜像
     image: message-service:latest
@@ -763,7 +763,7 @@ spec:
           image: 192.168.3.34:80/library/config-center:V1.0.0
           # 参数
           env:
-          	# gitlab的配置
+            # gitlab的配置
             - name: git.url
               value: "http://192.168.3.34:81/root/config-file.git"
             - name: git.paths
