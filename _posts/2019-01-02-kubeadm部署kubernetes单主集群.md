@@ -103,33 +103,33 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 #### 2.1.2.安装Docker CE
 
-1. 安装最新版
+- 安装最新版
 
   ```shell
 sudo yum install docker-ce
   ```
 
-2. 安装指定版本
+- 安装指定版本
 
   ```shell
 yum list docker-ce --showduplicates | sort -r
 sudo yum install docker-ce-<VERSION STRING>
   ```
 
-3. 启动Docker，并设置开机启动
+- 启动Docker，并设置开机启动
 
   ```shell
 sudo systemctl start docker & systemctl enable docker
   ```
 
-4. 验证是否成功安装，下载一个测试映像并在容器中运行它。当容器运行时，它打印一条信息消息并退出。
+- 验证是否成功安装，下载一个测试映像并在容器中运行它。当容器运行时，它打印一条信息消息并退出。
 
 
 ```shell
 sudo docker run hello-world
 ```
 
-5. 查看docker版本
+- 查看docker版本
 
 ```shell
 docker --version
@@ -137,13 +137,13 @@ docker --version
 
 ####   2.1.3.卸载Docker CE
 
-1. 卸载Docker
+- 卸载Docker
 
 ```shell
 sudo yum remove docker-ce
 ```
 
-2. 删除自定义配置文件
+- 删除自定义配置文件
 
 ```shell
 sudo rm -rf /var/lib/docker
@@ -174,7 +174,7 @@ docker pull registry
 docker run -d -p 5000:5000 --restart=always --name=registry -v /var/dockerRegistry:/var/lib/registry registry 
 ```
 
-**解释**：
+**参数说明**：
 
 - -d：后台运行。
 - -p：将容器的5000端口映射到宿主机的5000端口。 
@@ -277,13 +277,10 @@ tar -vxf  harbor-offline-installer-v1.7.1.tgz
 hostname = 192.168.3.34
 ```
 
-​	注意：
-
-​		1、默认的端口：80，默认协议：HTTP
-
-​		2、如果已经安装了上一步的`register`，需要先删除容器
-
-​		3、如果使用`HTTP`协议，同样需要将IP加入注册表
+**注意**：
+​ 1、默认的端口：80，默认协议：HTTP  
+​ 2、如果已经安装了上一步的`register`，需要先删除容器  
+​ 3、如果使用`HTTP`协议，同样需要将IP加入注册表  
 
 - 启动，运行harbor目录下的`install.sh`
 
@@ -291,14 +288,12 @@ hostname = 192.168.3.34
 ./install.sh
 ```
 
-- 登录，直接输入ip即可登录。http://192.168.3.34:80  
-
-
-​	   默认的用户名和密码：admin / Harbor12345
+- 登录，直接输入ip即可登录。 http://192.168.3.34:80
+- 默认的用户名和密码：admin / Harbor12345
 
 #### 3.2.3.上传镜像
 
-首先，需要登录到Harbor仓库，其他操作步骤相同：
+- 首先，需要登录到Harbor仓库，其他操作步骤相同：
 
 ```shell
 docker login 192.168.3.34:80
@@ -330,49 +325,47 @@ EOF
 
 #### 4.1.2.安装kubernetes
 
-1. 安装kubelet、 kubeadm、 kubectl
+1.安装kubelet、 kubeadm、 kubectl
 
-  ```shell
+```shell
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
-  ```
+```
 
-2. 启动kubelet，并设置开机自启动
+2.启动kubelet，并设置开机自启动
 
-  ```shell
+```shell
 systemctl enable kubelet && systemctl start kubelet
-  ```
+```
 
-3. 配置主节点上的kubelet使用cgroup驱动程序
+3.配置主节点上的kubelet使用cgroup驱动程序
 
-  ```shell
+```shell
 # 查看docker的cgroup驱动
 docker info | grep -i cgroup
 # 输出结果
 Cgroup Driver: cgroupfs
-  ```
+```
 
 -   确保kubelet 的cgroup drive 和docker的cgroup drive一样:
 
-
-  ```shell
+```shell
 sed -i "s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-  ```
+```
 
 -   重新启动kubelet:
 
-
-  ```shell
+```shell
 systemctl daemon-reload
 systemctl restart kubelet
-  ```
+```
 
-4. 初始化master
+4.初始化master
 
-  ```shell
+```shell
 kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.13.0 --apiserver-advertise-address=192.168.3.30
-  ```
+```
 
-  含义：
+  **参数说明**：
 
   - **--pod-network-cidr**：表示集群将使用的子网范围。
 
@@ -383,74 +376,73 @@ kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.13.0 --api
   -  若执行**kubeadm init**出错或强制终止，则再需要执行该命令时，需要先执行**kubeadm reset**重置。
 
 	**注意，记录下如下信息**
-
 	![](/img/docs-pics/docker01.png)
 
-5. 要使kubectl为非root用户工作，请运行以下命令
+5.要使kubectl为非root用户工作，请运行以下命令
 
-  ```shell
+```shell
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
-  ```
+```
 
   - 如果是**root**用户，则可以运行：
 
-  ```bash
+```shell
 export KUBECONFIG=/etc/kubernetes/admin.conf
-  ```
+```
 
-6. 安装pod网络附加组件
+6.安装pod网络附加组件
 
-  ```shell
+```shell
 kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
 
 kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
-  ```
+```
 
   下载calico.yaml文件，修改其中的配置，
-  ```yaml
+```yaml
 # Auto-detect the BGP IP address.
 - name: IP
   value: "autodetect"
 # 添加如下的配置，设置使用的网卡
 - name: IP_AUTODETECTION_METHOD
   value: "interface=ens*"
-  ```
+```
 
   - 查看pod状态：
 
-  ```shell
+```shell
 kubectl get pods --all-namespaces
-  ```
+```
 
-7. 将Master作为工作节点（可选）
+7.将Master作为工作节点（可选）
 
 > K8S集群默认不会将Pod调度到Master上，这样Master的资源就浪费了。在Master上，可以运行以下命令使其作为一个工作节点：
 
-  ```
+```shell
 kubectl taint nodes --all node-role.kubernetes.io/master-
-  ```
+```
 
-8. 将其他节点加入集群
+8.将其他节点加入集群
 
   - 在其他两个节点上，执行主节点生成的`kubeadm join`命令即可加入集群：
 
-  ```shell
+```shell
 kubeadm join 192.168.3.30:6443 --token rysi00.axpudm4r6vfh08jq --discovery-token-ca-cert-hash sha256:a455ef7bb25b9707098d9b96d4614b63b6246b58fac90a0e3159272e73c59e79
-  ```
+```
 
   - 验证集群是否正常，当所有节点加入集群后，在主节点上运行如下命令，即可看到集群情况
 
-  ```shell
+```shell
 kubectl get nodes
-  ```
+```
 
   - 查看所有pod状态，status全部为Running则表示集群正常。
 
-  ```shell
+```shell
 kubectl get pods -n kube-system
-  ```
+```
 
 9.修改apiserver的端口范围（可选）
 
@@ -548,8 +540,6 @@ kubectl describe secret admin  -n kube-system
   ![](/img/docs-pics/docker03.png)
 
 ### 5.5.登录页面
-
   - 打开连接（**火狐**）： https://192.168.3.30:30001
-
   - 选择**令牌**登录方式
   - 输入上图中的token，点击登录
