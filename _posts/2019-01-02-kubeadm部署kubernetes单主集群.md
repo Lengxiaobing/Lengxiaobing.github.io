@@ -105,25 +105,24 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 - 安装最新版
 
-  ```shell
+```shell
 sudo yum install docker-ce
-  ```
+```
 
 - 安装指定版本
 
-  ```shell
+```shell
 yum list docker-ce --showduplicates | sort -r
 sudo yum install docker-ce-<VERSION STRING>
-  ```
+```
 
 - 启动Docker，并设置开机启动
 
-  ```shell
+```shell
 sudo systemctl start docker & systemctl enable docker
-  ```
+```
 
 - 验证是否成功安装，下载一个测试映像并在容器中运行它。当容器运行时，它打印一条信息消息并退出。
-
 
 ```shell
 sudo docker run hello-world
@@ -138,13 +137,11 @@ docker --version
 ####   2.1.3.卸载Docker CE
 
 - 卸载Docker
-
 ```shell
 sudo yum remove docker-ce
 ```
 
 - 删除自定义配置文件
-
 ```shell
 sudo rm -rf /var/lib/docker
 ```
@@ -174,7 +171,7 @@ docker pull registry
 docker run -d -p 5000:5000 --restart=always --name=registry -v /var/dockerRegistry:/var/lib/registry registry 
 ```
 
-**参数说明**：
+**参数说明**：  
 
 - -d：后台运行。
 - -p：将容器的5000端口映射到宿主机的5000端口。 
@@ -277,7 +274,7 @@ tar -vxf  harbor-offline-installer-v1.7.1.tgz
 hostname = 192.168.3.34
 ```
 
-**注意**：
+**注意**：  
 ​ 1、默认的端口：80，默认协议：HTTP  
 ​ 2、如果已经安装了上一步的`register`，需要先删除容器  
 ​ 3、如果使用`HTTP`协议，同样需要将IP加入注册表  
@@ -400,7 +397,8 @@ kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/
 kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 ```
 
-  下载calico.yaml文件，修改其中的配置，
+- 下载calico.yaml文件，修改其中的配置，
+
 ```yaml
 # Auto-detect the BGP IP address.
 - name: IP
