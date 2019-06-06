@@ -647,7 +647,7 @@ kubectl get service -n kube-system -o wide
 
 ##### 2.5.8.2.创建用户
 
-  - 创建user.yaml文件，内容如下：
+  - 创建dashboard-rbac.yaml文件，内容如下：
 
 ```yaml
 apiVersion: v1
@@ -675,7 +675,7 @@ subjects:
   - 运行命令：
 
 ```shell
-kubectl create -f user.yaml
+kubectl create -f dashboard-rbac.yaml
 ```
 
 - 获取登录token
