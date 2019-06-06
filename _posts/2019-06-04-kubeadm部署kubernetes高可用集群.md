@@ -770,7 +770,7 @@ kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/kuber
 
 - 查看secret内容
 
-```she
+```shell
 kubectl get secret kubernetes-dashboard-certs -n kube-system -o yaml
 ```
 
