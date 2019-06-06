@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      kubeadm部署kubernetes高可用集群
-subtitle:   kubeadm部署kubernetes高可用集群
+title:      kubeadm部署kubernetes高可用集群-VIP版
+subtitle:   KeepAlive+VIP的形式完成高可用
 date:       2019-06-04
 author:     冷小冰
 header-img: img/post-bg-debug.png
@@ -11,7 +11,7 @@ tags:
     - Kubernetes
 ---
 
-# kubeadm部署kubernetes高可用集群
+# kubeadm部署kubernetes高可用集群-VIP版
 
 > [官网](https://kubernetes.io/docs/setup/independent/high-availability/)提供了两种拓扑结构部署集群：**stacked control plane nodes**和**external etcd cluster**，本文基于第一种拓扑结构进行部署，使用**Keepalived** + **HAProxy**搭建高可用**Load balancer**。
 
