@@ -686,8 +686,102 @@ kubectl describe secret admin -n kube-system
 
   ![](/img/docs-pics/1546851753513.png)
 
-##### 2.8.8.3.登录页面
+##### 2.5.8.3.登录页面
 
   - 打开连接（**火狐**）： https://192.168.3.11:30001
   - 选择**令牌**登录方式
   - 输入上图中的token，点击登录
+
+##### 2.5.8.4.创建证书
+
+1.**创建自签名CA**
+
+- 生成私钥
+
+```shell
+openssl genrsa -out ca.key 2048
+```
+
+- 生成自签名证书
+
+```shell
+openssl req -new -x509 -key ca.key -out ca.crt -days 3650 -subj "/C=CN/ST=HB/L=WH/O=DM/OU=YPT/CN=CA"
+```
+
+- 查看CA内容
+
+```shell
+openssl x509 -in ca.crt -noout -text
+```
+
+2.**签发Dashboard证书**
+
+- 生成私钥
+
+```shell
+openssl genrsa -out dashboard.key 2048
+```
+
+- 申请签名请求
+
+```shell
+openssl req -new -sha256 -key dashboard.key -out dashboard.csr -subj "/C=CN/ST=HB/L=WH/O=DM/OU=YPT/CN=192.168.3.11"
+```
+
+- 配置文件
+
+```shell
+cat >> /root/kubernetes/certs/dashboard.cnf << EOF
+extensions = san
+[san]
+keyUsage = digitalSignature
+extendedKeyUsage = clientAuth,serverAuth
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer
+subjectAltName = IP:192.168.3.11,IP:127.0.0.1,DNS:192.168.3.11,DNS:localhost
+EOF
+```
+
+- 签发证书
+
+```shell
+openssl x509 -req -sha256 -days 3650 -in dashboard.csr -out dashboard.crt -CA ca.crt -CAkey ca.key -CAcreateserial -extfile dashboard.cnf
+```
+
+- 查看证书
+
+```shell
+openssl x509 -in dashboard.crt -noout -text
+```
+
+3.**重新部署dashboard**
+
+- 删除已经部署的dashboard
+
+```shell
+kubectl delete -f kubernetes-dashboard.yaml
+```
+
+- 创建 secret "kubernetes-dashboard-certs" 
+
+```shell
+kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/kubernetes/certs -n kube-system
+```
+
+- 查看secret内容
+
+```she
+kubectl get secret kubernetes-dashboard-certs -n kube-system -o yaml
+```
+
+- 重新部署dashboard
+
+```shell
+kubectl apply -f kubernetes-dashboard.yaml
+```
+
+4.**浏览器导入证书**
+
+- 将生成的自签名证书**ca.crt**文件，导入浏览器。
+- 访问页面： https://192.168.3.11:30001
+
