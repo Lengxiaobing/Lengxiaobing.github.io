@@ -373,7 +373,7 @@ kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.13.0 --api
   -  若执行**kubeadm init**出错或强制终止，则再需要执行该命令时，需要先执行**kubeadm reset**重置。
 
 **注意，记录下如下信息**
-![](../img/docs-pics/docker01.png)
+![](/img/docs-pics/docker01.png)
 
 5.要使kubectl为非root用户工作，请运行以下命令
 
