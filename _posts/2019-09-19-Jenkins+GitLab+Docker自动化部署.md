@@ -9,6 +9,7 @@ catalog: true
 tags:
     - Jenkins
 ---
+
 # Jenkins+GitLab+Docker自动化部署
 
 > 简陋的Jenkins自动化部署
@@ -28,13 +29,14 @@ tags:
 **关闭防火墙**
 
 ```shell
-1 systemctl stop firewalld & systemctl disable firewalld 
+systemctl stop firewalld & systemctl disable firewalld 
 ```
 
 **关闭SeLinux**
 
 ```shell
-1 2 setenforce 0 sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config 
+setenforce 0 
+sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config 
 ```
 
 **关闭Swap**
@@ -43,7 +45,7 @@ tags:
 - 编辑**/etc/fstab**，注释掉包含**swap**的那一行即可，重启后可永久关闭，如下所示：
 
 ```shell
-1 sed -i '/ swap / s/^/#/' /etc/fstab
+sed -i '/ swap / s/^/#/' /etc/fstab
 ```
 
 ## Docker
@@ -223,6 +225,7 @@ script.sh: line 1: mvn: command not found
 对于java或maven的路径的环境变量是放在/etc/profile中的，而/etc/profile只有在用户登录的时候才会被load，Jenkins在运行命令时，使用的是Non-login的方式，而这种方式在运行命令时，/etc/profile是不会被load进来的，所以jenkins只能在当前路径下寻找可执行文件.
 
 **解决方式**:
+
 在Jenkins中设置全局属性中的环境变量，jenkins主页面->Manage Jenkins->Configure System->Global Properties 中，将Environment variables复选框选中，会出来List of variables， 填入以下内容:
 
 - name: JAVA_HOME        value:/opt/jdk1.8.0_172
