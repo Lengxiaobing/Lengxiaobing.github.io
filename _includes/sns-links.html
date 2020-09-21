@@ -106,5 +106,16 @@
             </a>
         </li>
         {% endif %}
+        <!-- add gitee -->
+        {% if site.gitee_username %}
+        <li>
+            <a target="_blank" href="https://gitee.com/{{ site.gitee_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-gitbook fa-stack-1x fa-inverse">G</i>
+      </span>
+            </a>
+        </li>
+        {% endif %}
     </ul>
 </ul>
