@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      Conflutent搭建教程
-subtitle:   Conflutent
+title:      Confluent搭建教程
+subtitle:   Confluent
 date:       2019-02-23
 author:     冷小冰
 header-img: img/post-bg-debug.png
 catalog: true
 tags:
-    - Conflutent
+    - Confluent
     - ETL
     - Zookeeper
 ---
