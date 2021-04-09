@@ -599,6 +599,19 @@ EOF
 kubeadm join cluster.kube.com:16443 --token 5kad4d.1pa4jvjcba4tttsl --discovery-token-ca-cert-hash sha256:f1551456908535ed0c6078a199651a01ddf5cfb470a901f3e24701ea996f978e
 ```
 
+- 获取加入集群命令
+
+忘记加入集群命令时，可使用如下方式重新获取
+
+```shell
+# 简单方法
+kubeadm token create --print-join-command
+
+# 第二种方法
+token=$(kubeadm token generate)
+kubeadm token create $token --print-join-command --ttl=0
+```
+
 #### 2.5.8.安装dashboard
 
 > 在node节点上安装，节点上需要有相关镜像。
