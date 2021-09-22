@@ -40,7 +40,6 @@ https://github.com/kitian616/jekyll-TeXt-theme
 
             <!-- 归档列表 -->
             <div class="mini-post-list js-result d-none">
-                <section>
                     {%- assign _sorted_list = site.posts -%}
                     {%- assign _sorted_list = _sorted_list | sort: 'date' -%}
                     {%- assign _sorted_list = _sorted_list | reverse -%}
@@ -59,13 +58,11 @@ https://github.com/kitian616/jekyll-TeXt-theme
                     {%- assign _currentyear = _article.date | date: '%Y' -%}
                     {%- assign _currentdate = _article.date | date: '%m-%d' -%}
                     {%- if _currentyear != _yaer -%}
-                    <!--{%- unless forloop.first -%}-->
-                    <!--{%- endunless -%}-->
-                    <div>
+                    {%- unless forloop.first -%}</section>{%- endunless -%}
+                    <section>
                         <span class="fa fa-calendar-times-o listing-seperator">
                           <span class="tag-text">{{ _currentyear }}</span>
                         </span>
-                    </div>
                     {%- assign _yaer = _currentyear -%}
                     {%- endif -%}
                     <div class="post-preview item" data-tags="{{ _tags }}">
@@ -82,6 +79,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
                             </li>
                         </ul>
                     </div>
+					{%- if forloop.last -%}</section>{%- endif -%}
                     {% endfor %}
                 </section>
             </div>
