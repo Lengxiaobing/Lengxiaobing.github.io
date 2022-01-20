@@ -150,18 +150,19 @@ sudo rm -rf /var/lib/docker
 
 - 修改本地主机的docker启动配置文件，在/etc/docker/路径下，添加daemon.json文件。
 ```json
- {
+{
   "live-restore": true
- }
+}
 ```
 
 #### 2.1.5.修改docker镜像存储路径
 
 - 在daemon.json文件中添加如下配置
 ```json
- {
+{
   "docker-root": "/mnt/docker"
- }
+}
+```
 
 ## 三、部署Docker私有仓库
 
