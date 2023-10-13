@@ -164,6 +164,16 @@ sudo rm -rf /var/lib/docker
 }
 ```
 
+#### 2.1.6.修改docker日志大小
+
+- 在daemon.json文件中添加如下配置
+```json
+{
+  "log-driver":"json-file",
+  "log-opts": {"max-size":"500m", "max-file":"3"}
+}
+```
+
 ## 三、部署Docker私有仓库
 
 > Docker提供了开放的中央仓库dockerhub，同时也允许使用`registry`搭建本地私有仓库。`registry`操作比较繁琐，并且没有管理页面，使用起来不便捷，达不到企业级的要求。有一些开源的私有仓库，可以满足企业及要求，`Harbor`是其中比较好的一款。下面分别来搭建下两种仓库。
